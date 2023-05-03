@@ -1,0 +1,68 @@
+.login-bg-container {
+  background-color: #e5e5e5;
+  height: 100vh;
+  display: flex;
+}
+
+.login-card-container {
+  margin-top: 150px;
+  margin-bottom: 150px;
+  margin-left: 50px;
+  width: 456px;
+  padding: 25px;
+
+  background-color: #fefeff;
+  box-shadow: 0px 8px 40px rgba(7, 7, 7, 0.08);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-app-image {
+  width: 53px;
+  height: 43px;
+  background-size: cover;
+}
+
+.login-page-app-name {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  color: #f7931e;
+  font-size: 24px;
+}
+
+.login-text {
+  color: #0f172a;
+  font-size: 25px;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.label-element {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.input-element {
+  background-color: #e2e8f0;
+  height: 30px;
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  background-color: #f7931e;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 0;
+}
