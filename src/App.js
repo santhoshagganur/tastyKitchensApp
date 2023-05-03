@@ -19,7 +19,7 @@ const sortByOptions = [
 
 const App = () => (
   <Switch>
-    <Route to="/login" component={Login} />
+    <Route exact to="/login" component={Login} />
   </Switch>
 )
 
