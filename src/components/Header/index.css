@@ -1,0 +1,47 @@
+.header-container {
+  background-color: #f8fafc;
+  display: flex;
+  flex-direction: space-between;
+}
+
+.app-logo-container {
+  display: flex;
+  margin-left: 20px;
+}
+
+.header-app-logo {
+  margin-right: 8px;
+  height: 70px;
+  background-size: cover;
+}
+
+.header-app-name {
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  color: #f7931e;
+  font-size: 30px;
+}
+
+.header-navigation-container {
+  display: flex;
+  list-style-type: none;
+  margin-right: 20px;
+}
+
+.navigation-tab {
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 16px;
+  color: #334155;
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: #f7931e;
+  color: #ffffff;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 10px;
+  border-width: 0;
+}
