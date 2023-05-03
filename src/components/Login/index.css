@@ -2,12 +2,13 @@
   background-color: #e5e5e5;
   height: 100vh;
   display: flex;
+  justify-content: space-between;
 }
 
 .login-card-container {
   margin-top: 150px;
   margin-bottom: 150px;
-  margin-left: 50px;
+  margin-left: 150px;
   width: 456px;
   padding: 25px;
 
@@ -55,6 +56,7 @@
   height: 30px;
   width: 350px;
   margin-bottom: 20px;
+  border-width: 0;
 }
 
 .login-button {
@@ -65,4 +67,10 @@
   padding: 10px;
   border-radius: 5px;
   border-width: 0;
+  cursor: pointer;
+}
+
+.error-msg {
+  color: #ef4444;
+  font-size: 15px;
 }
