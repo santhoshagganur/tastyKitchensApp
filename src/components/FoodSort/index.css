@@ -1,0 +1,47 @@
+.sort-options-container {
+  border-width: 0;
+  background-color: transparent;
+  color: #475569;
+  font-size: 18px;
+  font-family: 'DM Sans';
+  margin-top: 0;
+  font-weight: 500;
+}
+
+.home-title {
+  color: #183b56;
+  font-family: 'DM Sans';
+  font-weight: 700;
+  font-size: 34px;
+}
+
+.home-title-description {
+  color: #64748b;
+  font-family: 'DM Sans';
+  font-size: 20px;
+}
+
+.home-filter-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.filter-icon {
+  font-size: 25px;
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.home-filter {
+  display: flex;
+  justify-content: center;
+}
+
+.home-filter-title {
+  color: #475569;
+  font-size: 18px;
+  font-family: 'DM Sans';
+  margin-top: 0;
+  font-weight: 500;
+  margin-right: 5px;
+}
