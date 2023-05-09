@@ -15,3 +15,10 @@
 .home-horizontal-line {
   color: #cbd2d9;
 }
+
+.home-carousel-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+}

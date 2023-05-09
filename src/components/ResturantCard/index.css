@@ -1,0 +1,48 @@
+.resturant-card-container {
+  display: flex;
+  margin: 20px;
+  width: 400px;
+}
+
+.restaurant-img {
+  height: 120px;
+  background-size: cover;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.restaurant-card-name {
+  color: #334155;
+  font-family: 'DM Sans';
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.restaurant-card-food-type {
+  color: #64748b;
+  font-family: 'DM Sans';
+  font-size: 15px;
+}
+
+.rating-container {
+  display: flex;
+}
+
+.users-rating {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-right: 4px;
+}
+
+.total-ratings {
+  color: #64748b;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.rating-star {
+  color: #ffcc00;
+  margin-right: 5px;
+}

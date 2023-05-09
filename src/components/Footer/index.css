@@ -1,0 +1,40 @@
+.footer-section-container {
+  background-color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.footer-website-information {
+  display: flex;
+}
+
+.footer-logo {
+  height: 50px;
+  background-size: cover;
+  margin-right: 15px;
+}
+
+.footer-website-name {
+  color: #ffffff;
+  font-family: 'DM Sans';
+  font-style: italic;
+  font-weight: 700;
+  font-size: 30px;
+  margin-top: 0;
+}
+
+.footer-description {
+  color: #ffffff;
+  font-family: 'DM Sans';
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}
+
+.logos {
+  color: #ffffff;
+  font-size: 40px;
+  margin-right: 20px;
+}
