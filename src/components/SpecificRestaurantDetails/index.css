@@ -1,0 +1,67 @@
+.specific-restaurant-container {
+  background-color: #333333;
+  padding-left: 50px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: flex;
+}
+
+.specific-restaurant-img {
+  height: 180px;
+  background-size: cover;
+  margin-right: 16px;
+}
+
+.specific-restaurant-name {
+  color: #ffffff;
+  font-family: 'Roboto';
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.specific-restaurant-description {
+  color: #ffffff;
+  font-size: 10px;
+  font-family: 'Roboto';
+}
+
+.specific-restaurant-location {
+  color: #ffffff;
+  font-size: 12px;
+  font-family: 'Roboto';
+}
+
+.specific-restaurant-rating-container {
+  display: flex;
+}
+
+.specific-restaurant-star {
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.specific-rating-container {
+  display: flex;
+}
+
+.specific-restaurant-rating {
+  color: #ffffff;
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.specific-restaurant-number-of-ratings {
+  color: #ffffff;
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.specific-restaurant-horizontal-line {
+  border: 1px solid #e2e8f0;
+  transform: rotate(90deg);
+  width: 33px;
+}
+
+.specific-restaurant-item {
+  margin-right: 50px;
+}

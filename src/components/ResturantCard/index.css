@@ -46,3 +46,7 @@
   color: #ffcc00;
   margin-right: 5px;
 }
+
+.navigation-link {
+  text-decoration: none;
+}
