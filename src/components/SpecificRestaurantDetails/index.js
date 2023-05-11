@@ -60,6 +60,37 @@ class SpecificRestaurantDetails extends Component {
     }
   }
 
+  renderFoodItemsView = () => {
+    const {restaurantData} = this.state
+    const {foodItems} = restaurantData
+    console.log(restaurantData)
+
+    return (
+      <ul className="specific-restaurant-food-items-container">
+        {foodItems.map(each => (
+          <li className="specific-restaurant-specific-food">
+            <img
+              src={each.imageUrl}
+              className="specific-restaurant-food-img"
+              alt="food"
+            />
+            <div>
+              <h1 className="specific-food-name"> {each.name} </h1>
+              <div className="specific-rating-container">
+                <BiRupee className="specific-restaurant-specific-food-rupee" />
+                <p className="specific-restaurant-food-cost"> {each.cost} </p>
+              </div>
+              <div className="specific-rating-container">
+                <AiFillStar className="specific-restaurant-specific-food-star" />
+                <p className="specific-restaurant-rating"> {each.foodType} </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
   render() {
     const {restaurantData} = this.state
     const {
@@ -109,8 +140,7 @@ class SpecificRestaurantDetails extends Component {
             </div>
           </div>
         </div>
-
-        {this.renderFoodItemsView()}
+        <Footer />
       </>
     )
   }

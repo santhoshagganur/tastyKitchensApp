@@ -1,0 +1,33 @@
+.not-found-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.not-found-img {
+  height: 200px;
+  background-size: cover;
+}
+
+.not-found-text {
+  font-family: 'DM Sans';
+  color: #1e293b;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.not-found-description {
+  color: #475569;
+  font-size: 20px;
+}
+
+.navigation-button {
+  background-color: #f7931e;
+  border-radius: 5px;
+  padding: 10px;
+  color: #ffffff;
+  font-size: 12px;
+  border-width: 0;
+}

@@ -65,3 +65,41 @@
 .specific-restaurant-item {
   margin-right: 50px;
 }
+
+.specific-restaurant-food-items-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 60px;
+}
+
+.specific-restaurant-specific-food {
+  display: flex;
+}
+
+.specific-restaurant-food-img {
+  height: 150px;
+  background-size: cover;
+  margin-right: 15px;
+}
+
+.specific-food-name {
+  color: #334155;
+  font-size: 20px;
+  font-family: 'DM Sans';
+}
+
+.specific-restaurant-specific-food-rupee {
+  color: #334155;
+  margin-right: 5px;
+}
+
+.specific-restaurant-food-cost {
+  color: #334155;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.specific-restaurant-specific-food-star {
+  color: #ffcc00;
+  margin-right: 5px;
+}
