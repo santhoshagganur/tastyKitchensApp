@@ -1,0 +1,70 @@
+.specific-restaurant-specific-food {
+  display: flex;
+  width: 600px;
+  margin: 20px;
+}
+
+.specific-restaurant-food-img {
+  height: 150px;
+  width: 200px;
+  background-size: cover;
+  margin-right: 15px;
+}
+
+.specific-food-name {
+  color: #334155;
+  font-size: 20px;
+  font-family: 'DM Sans';
+}
+
+.specific-restaurant-specific-food-rupee {
+  color: #334155;
+  margin-right: 5px;
+}
+
+.specific-restaurant-food-cost {
+  color: #334155;
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.specific-restaurant-specific-food-star {
+  color: #ffcc00;
+  margin-right: 5px;
+}
+
+.specific-restaurant-food-rating {
+  color: #333333;
+  font-size: 12px;
+  margin-top: 0;
+  font-weight: 500;
+}
+
+.add-food-button {
+  padding: 5px;
+  border: #ffcc00 2px solid;
+  border-radius: 5px;
+  color: #ffcc00;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+.adding-quantity-container {
+  display: flex;
+}
+
+.add-sub-quantity {
+  color: #ffcc00;
+  background-color: transparent;
+  border: 2px solid #ffcc00;
+  padding: 2px;
+  height: 20px;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.quantity {
+  margin-top: 0;
+}

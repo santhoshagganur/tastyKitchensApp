@@ -5,13 +5,27 @@ import {BiRupee} from 'react-icons/bi'
 
 import Header from '../Header'
 import Footer from '../Footer'
+import FoodItem from '../FoodItem'
 import './index.css'
 
 class SpecificRestaurantDetails extends Component {
-  state = {restaurantData: {}}
+  state = {restaurantData: {}, foodDetails: []}
 
   componentDidMount() {
     this.getRestaurantDetails()
+  }
+
+  getFoodItems = data => {
+    const updatedFood = data.map(each => ({
+      name: each.name,
+      cost: each.cost,
+      foodType: each.food_type,
+      imageUrl: each.image_url,
+      id: each.id,
+      rating: each.rating,
+    }))
+
+    return updatedFood
   }
 
   getUpdatedData = data => {
@@ -26,13 +40,6 @@ class SpecificRestaurantDetails extends Component {
       opensAt: data.opens_at,
       location: data.location,
       itemsCount: data.items_count,
-      foodItems: data.food_items.map(each => ({
-        name: each.name,
-        cost: each.cost,
-        foodType: each.food_type,
-        imageUrl: each.image_url,
-        id: each.id,
-      })),
     }
 
     return modifiedData
@@ -56,43 +63,13 @@ class SpecificRestaurantDetails extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const updatedData = this.getUpdatedData(data)
-      this.setState({restaurantData: updatedData})
+      const updatedFoodData = this.getFoodItems(data.food_items)
+      this.setState({restaurantData: updatedData, foodDetails: updatedFoodData})
     }
   }
 
-  renderFoodItemsView = () => {
-    const {restaurantData} = this.state
-    const {foodItems} = restaurantData
-    console.log(restaurantData)
-
-    return (
-      <ul className="specific-restaurant-food-items-container">
-        {foodItems.map(each => (
-          <li className="specific-restaurant-specific-food">
-            <img
-              src={each.imageUrl}
-              className="specific-restaurant-food-img"
-              alt="food"
-            />
-            <div>
-              <h1 className="specific-food-name"> {each.name} </h1>
-              <div className="specific-rating-container">
-                <BiRupee className="specific-restaurant-specific-food-rupee" />
-                <p className="specific-restaurant-food-cost"> {each.cost} </p>
-              </div>
-              <div className="specific-rating-container">
-                <AiFillStar className="specific-restaurant-specific-food-star" />
-                <p className="specific-restaurant-rating"> {each.foodType} </p>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-
   render() {
-    const {restaurantData} = this.state
+    const {restaurantData, foodDetails} = this.state
     const {
       imageUrl,
       name,
@@ -140,6 +117,13 @@ class SpecificRestaurantDetails extends Component {
             </div>
           </div>
         </div>
+
+        <ul className="specific-restaurant-food-items-container">
+          {foodDetails.map(each => (
+            <FoodItem key={each.id} foodItem={each} />
+          ))}
+        </ul>
+
         <Footer />
       </>
     )
