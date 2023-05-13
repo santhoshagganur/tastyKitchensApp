@@ -11,10 +11,15 @@ class FoodItem extends Component {
   state = {isClicked: false, quantity: 0}
 
   addToCart = () => {
+    const {foodItem} = this.props
+    const foodData = {...foodItem, quantity: 1}
+    localStorage.setItem('cartDetails', JSON.stringify(foodData))
     this.setState(prevState => ({isClicked: !prevState.isClicked}))
   }
 
   incrementFoodQuantity = () => {
+    const cartDetails = JSON.parse(localStorage.getItem('cartDetails'))
+    console.log(cartDetails)
     this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
 
@@ -73,7 +78,7 @@ class FoodItem extends Component {
               className="add-food-button"
               onClick={this.addToCart}
             >
-              ADD
+              Add
             </button>
           )}
         </div>

@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Slider from 'react-slick'
+import Loader from 'react-loader-spinner'
 
 import './index.css'
 import Header from '../Header'
@@ -23,8 +24,28 @@ const sortByOptions = [
   },
 ]
 
+const carouselApiStatusConstants = {
+  initial: 'INITIAL',
+  onProgress: 'ON_PROGRESS',
+  failure: 'FAILED',
+  success: 'SUCCESS',
+}
+
+const restaurantApiStatusConstants = {
+  initial: 'INITIAL',
+  onProgress: 'ON_PROGRESS',
+  failure: 'FAILED',
+  success: 'SUCCESS',
+}
+
 class Home extends Component {
-  state = {carouselImages: [], activePage: 1, restaurantImages: []}
+  state = {
+    carouselImages: [],
+    activePage: 1,
+    restaurantImages: [],
+    carouselApiStatus: carouselApiStatusConstants.initial,
+    restaurantApiStatus: restaurantApiStatusConstants.initial,
+  }
 
   componentDidMount() {
     this.getCarouselImages()
@@ -57,6 +78,9 @@ class Home extends Component {
   }
 
   getRestaurantsList = async () => {
+    this.setState({
+      restaurantApiStatus: restaurantApiStatusConstants.inProgress,
+    })
     const {activePage} = this.state
     const jwtToken = Cookies.get('jwt_token')
     const offset = (activePage - 1) * LIMIT
@@ -73,11 +97,17 @@ class Home extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const updatedData = this.getUpdatedData(data)
-      this.setState({restaurantImages: updatedData})
+      this.setState({
+        restaurantImages: updatedData,
+        restaurantApiStatus: restaurantApiStatusConstants.success,
+      })
+    } else {
+      this.setState({restaurantApiStatus: restaurantApiStatusConstants.failure})
     }
   }
 
   getCarouselImages = async () => {
+    this.setState({carouselApiStatus: carouselApiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/restaurants-list/offers'
     const options = {
@@ -96,40 +126,99 @@ class Home extends Component {
         id: each.id,
       }))
 
-      this.setState({carouselImages: updatedData})
+      this.setState({
+        carouselImages: updatedData,
+        carouselApiStatus: carouselApiStatusConstants.success,
+      })
+    } else {
+      this.setState({carouselApiStatus: carouselApiStatusConstants.failure})
     }
   }
 
-  render() {
-    const {carouselImages, restaurantImages} = this.state
+  renderLoader = () => (
+    <div className="loader-container">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
+
+  renderCarouselSuccessView = () => {
+    const {carouselImages} = this.state
+
     const settings = {
       dots: true,
       slidesToShow: 1,
       slidesToScroll: 1,
     }
+
+    return (
+      <ul>
+        <Slider {...settings}>
+          {carouselImages.map(each => (
+            <img
+              src={each.imageUrl}
+              className="home-carousel-img"
+              alt="carousel"
+            />
+          ))}
+        </Slider>
+      </ul>
+    )
+  }
+
+  renderRestaurantSuccessView = () => {
+    const {restaurantImages} = this.state
+
+    return (
+      <div className="home-body-container">
+        <FoodSort sortByOptions={sortByOptions} />
+        <hr className="home-horizontal-line" />
+        <ul className="home-carousel-container">
+          {restaurantImages.map(each => (
+            <ResturantCard key={each.id} restaurantDetails={each} />
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  renderCarousels = () => {
+    const {carouselApiStatus} = this.state
+    console.log(carouselApiStatus)
+
+    switch (carouselApiStatus) {
+      case carouselApiStatusConstants.inProgress:
+        return this.renderLoader()
+
+      case carouselApiStatusConstants.success:
+        return this.renderCarouselSuccessView()
+
+      default:
+        return null
+    }
+  }
+
+  renderRestaurants = () => {
+    const {restaurantApiStatus} = this.state
+
+    switch (restaurantApiStatus) {
+      case restaurantApiStatusConstants.inProgress:
+        return this.renderLoader()
+
+      case restaurantApiStatusConstants.success:
+        return this.renderRestaurantSuccessView()
+
+      default:
+        return null
+    }
+  }
+
+  render() {
     return (
       <>
         <Header />
-        <ul>
-          <Slider {...settings}>
-            {carouselImages.map(each => (
-              <img
-                src={each.imageUrl}
-                className="home-carousel-img"
-                alt="carousel"
-              />
-            ))}
-          </Slider>
-        </ul>
-        <div className="home-body-container">
-          <FoodSort sortByOptions={sortByOptions} />
-          <hr className="home-horizontal-line" />
-          <ul className="home-carousel-container">
-            {restaurantImages.map(each => (
-              <ResturantCard key={each.id} restaurantDetails={each} />
-            ))}
-          </ul>
-        </div>
+        {this.renderCarousels()}
+        {this.renderRestaurants()}
+
         <Footer />
       </>
     )
