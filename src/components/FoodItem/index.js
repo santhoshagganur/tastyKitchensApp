@@ -5,6 +5,8 @@ import {BiRupee} from 'react-icons/bi'
 import {BsPlus} from 'react-icons/bs'
 import {HiOutlineMinusSm} from 'react-icons/hi'
 
+import CartContext from '../../context/CartContext'
+
 import './index.css'
 
 class FoodItem extends Component {
@@ -15,6 +17,7 @@ class FoodItem extends Component {
     const foodData = {...foodItem, quantity: 1}
     localStorage.setItem('cartDetails', JSON.stringify(foodData))
     this.setState(prevState => ({isClicked: !prevState.isClicked}))
+    console.log(localStorage.getItem('cartDetails'))
   }
 
   incrementFoodQuantity = () => {
@@ -59,17 +62,17 @@ class FoodItem extends Component {
               <button
                 type="button"
                 className="add-sub-quantity"
-                onClick={this.incrementFoodQuantity}
+                onClick={this.decrementFoodQuantity}
               >
-                <BsPlus />
+                <HiOutlineMinusSm />
               </button>
               <p className="quantity">{quantity}</p>
               <button
                 type="button"
                 className="add-sub-quantity"
-                onClick={this.decrementFoodQuantity}
+                onClick={this.incrementFoodQuantity}
               >
-                <HiOutlineMinusSm />
+                <BsPlus />
               </button>
             </div>
           ) : (
