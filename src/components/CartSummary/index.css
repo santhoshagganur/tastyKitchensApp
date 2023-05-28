@@ -1,0 +1,25 @@
+.cart-bill-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px;
+  width: 80vw;
+}
+
+.cart-bill-heading {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.cart-bill-amount {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.place-order-btn {
+  border-width: 0;
+  padding: 10px;
+  font-size: 14px;
+  color: #ffffff;
+  border-radius: 5px;
+  background-color: #f7931e;
+}

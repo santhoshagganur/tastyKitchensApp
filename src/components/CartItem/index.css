@@ -1,0 +1,41 @@
+.cart-item-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+}
+
+.cart-food-container {
+  display: flex;
+  align-items: center;
+}
+
+.cart-food {
+  height: 100px;
+  width: 150px;
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.food-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.cart-quantity-container {
+  display: flex;
+}
+
+.quantity-controller-button {
+  background-color: transparent;
+  border-width: 0;
+  font-size: 20px;
+}
+
+.cart-food-price {
+  color: #ffa412;
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+}
