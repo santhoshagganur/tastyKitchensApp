@@ -5,92 +5,126 @@ import {BiRupee} from 'react-icons/bi'
 import {BsPlus} from 'react-icons/bs'
 import {HiOutlineMinusSm} from 'react-icons/hi'
 
-import CartContext from '../../context/CartContext'
-
 import './index.css'
 
 class FoodItem extends Component {
-  state = {isClicked: false, quantity: 0}
+  state = {isClicked: false, quantity: 0, cartList: []}
 
-  incrementFoodQuantity = () => {
-    const cartDetails = JSON.parse(localStorage.getItem('cartDetails'))
-    console.log(cartDetails)
-    this.setState(prevState => ({quantity: prevState.quantity + 1}))
+  componentDidMount() {
+    this.findCartItems()
   }
 
-  decrementFoodQuantity = () => {
-    const {quantity} = this.state
+  findCartItems = () => {
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || []
+    const {foodItem} = this.props
+    const cartItem = cartData.filter(each => each.id === foodItem.id)
 
-    if (quantity > 0) {
-      this.setState(prevState => ({quantity: prevState.quantity - 1}))
+    if (cartItem.length !== 0) {
+      if (cartItem.quantity > 1) {
+        this.setState({quantity: cartItem.quantity})
+      } else if (cartItem.quantity < 1) {
+        this.removeCartItem()
+      }
     }
   }
 
-  renderFoodItem = () => (
-    <CartContext.Consumer>
-      {value => {
-        const {addCartItem} = value
-        const {foodItem} = this.props
-        const {name, cost, rating, imageUrl} = foodItem
-        const {isClicked, quantity} = this.state
+  incrementFoodQuantity = () => {
+    const cartData = JSON.parse(localStorage.getItem('cartData'))
+    const {foodItem} = this.props
+    const updatedCartData = cartData.map(eachItem => {
+      if (eachItem.id === foodItem.id) {
+        // console.log('found')
+        const updatedQuantity = eachItem.quantity + 1
+        return {...eachItem, quantity: updatedQuantity}
+      }
+      return eachItem
+    })
+    localStorage.setItem('cartData', JSON.stringify(updatedCartData))
+    this.findCartItems()
+  }
 
-        const foodData = {...foodItem, quantity: 1}
-
-        const addToCart = () => {
-          addCartItem(foodData)
+  decrementFoodQuantity = () => {
+    const cartData = JSON.parse(localStorage.getItem('cartData'))
+    const {foodItem} = this.props
+    const updatedCartData = cartData.map(eachItem => {
+      if (eachItem.id === foodItem.id) {
+        // console.log('found')
+        if (eachItem.quantity > 0) {
+          const updatedQuantity = eachItem.quantity - 1
+          return {...eachItem, quantity: updatedQuantity}
         }
+      }
+      return eachItem
+    })
+    localStorage.setItem('cartData', JSON.stringify(updatedCartData))
+    this.findCartItems()
+  }
 
-        return (
-          <li className="specific-restaurant-specific-food">
-            <img
-              src={imageUrl}
-              className="specific-restaurant-food-img"
-              alt="food"
-            />
-            <div>
-              <h1 className="specific-food-name"> {name} </h1>
-              <div className="specific-rating-container">
-                <BiRupee className="specific-restaurant-specific-food-rupee" />
-                <p className="specific-restaurant-food-cost"> {cost} </p>
-              </div>
-              <div className="specific-rating-container">
-                <AiFillStar className="specific-restaurant-specific-food-star" />
-                <p className="specific-restaurant-food-rating">{rating}</p>
-              </div>
+  renderFoodItem = () => {
+    const {foodItem} = this.props
+    const {name, cost, rating, imageUrl} = foodItem
+    const {isClicked, quantity} = this.state
 
-              {isClicked ? (
-                <div className="adding-quantity-container">
-                  <button
-                    type="button"
-                    className="add-sub-quantity"
-                    onClick={this.decrementFoodQuantity}
-                  >
-                    <HiOutlineMinusSm />
-                  </button>
-                  <p className="quantity">{quantity}</p>
-                  <button
-                    type="button"
-                    className="add-sub-quantity"
-                    onClick={this.incrementFoodQuantity}
-                  >
-                    <BsPlus />
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  className="add-food-button"
-                  onClick={addToCart}
-                >
-                  Add
-                </button>
-              )}
+    const addToCart = () => {
+      const {cartList} = this.state
+      const cartItem = {...foodItem, quantity: 1}
+      this.setState(prevState => ({
+        cartList: [...prevState.cartList, cartItem],
+      }))
+
+      localStorage.setItem('cartData', JSON.stringify(cartList))
+      console.log(localStorage.getItem('cartData'))
+    }
+
+    return (
+      <li className="specific-restaurant-specific-food">
+        <img
+          src={imageUrl}
+          className="specific-restaurant-food-img"
+          alt="food"
+        />
+        <div>
+          <h1 className="specific-food-name"> {name} </h1>
+          <div className="specific-rating-container">
+            <BiRupee className="specific-restaurant-specific-food-rupee" />
+            <p className="specific-restaurant-food-cost"> {cost} </p>
+          </div>
+          <div className="specific-rating-container">
+            <AiFillStar className="specific-restaurant-specific-food-star" />
+            <p className="specific-restaurant-food-rating">{rating}</p>
+          </div>
+
+          {isClicked ? (
+            <div className="adding-quantity-container">
+              <button
+                type="button"
+                className="add-sub-quantity"
+                onClick={this.decrementFoodQuantity}
+              >
+                <HiOutlineMinusSm />
+              </button>
+              <p className="quantity">{quantity}</p>
+              <button
+                type="button"
+                className="add-sub-quantity"
+                onClick={this.incrementFoodQuantity}
+              >
+                <BsPlus />
+              </button>
             </div>
-          </li>
-        )
-      }}
-    </CartContext.Consumer>
-  )
+          ) : (
+            <button
+              type="button"
+              className="add-food-button"
+              onClick={addToCart}
+            >
+              Add
+            </button>
+          )}
+        </div>
+      </li>
+    )
+  }
 
   render() {
     return this.renderFoodItem()
