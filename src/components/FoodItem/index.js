@@ -8,7 +8,7 @@ import {HiOutlineMinusSm} from 'react-icons/hi'
 import './index.css'
 
 class FoodItem extends Component {
-  state = {isClicked: false, quantity: 0, cartList: []}
+  state = {isClicked: false, quantity: 0}
 
   componentDidMount() {
     this.findCartItems()
@@ -40,6 +40,7 @@ class FoodItem extends Component {
       return eachItem
     })
     localStorage.setItem('cartData', JSON.stringify(updatedCartData))
+    this.setState(prevState => ({quantity: prevState.quantity + 1}))
     this.findCartItems()
   }
 
@@ -57,6 +58,19 @@ class FoodItem extends Component {
       return eachItem
     })
     localStorage.setItem('cartData', JSON.stringify(updatedCartData))
+    this.setState(prevState => ({quantity: prevState.quantity - 1}))
+    this.findCartItems()
+  }
+
+  addToCart = () => {
+    const cartData = JSON.parse(localStorage.getItem('cartData')) || []
+    const {foodItem} = this.props
+    const cartItem = {...foodItem, quantity: 1}
+    cartData.push(cartItem)
+
+    localStorage.setItem('cartData', JSON.stringify(cartData))
+    this.setState({isClicked: true})
+    console.log(localStorage.getItem('cartData'))
     this.findCartItems()
   }
 
@@ -64,17 +78,6 @@ class FoodItem extends Component {
     const {foodItem} = this.props
     const {name, cost, rating, imageUrl} = foodItem
     const {isClicked, quantity} = this.state
-
-    const addToCart = () => {
-      const {cartList} = this.state
-      const cartItem = {...foodItem, quantity: 1}
-      this.setState(prevState => ({
-        cartList: [...prevState.cartList, cartItem],
-      }))
-
-      localStorage.setItem('cartData', JSON.stringify(cartList))
-      console.log(localStorage.getItem('cartData'))
-    }
 
     return (
       <li className="specific-restaurant-specific-food">
@@ -116,7 +119,7 @@ class FoodItem extends Component {
             <button
               type="button"
               className="add-food-button"
-              onClick={addToCart}
+              onClick={this.addToCart}
             >
               Add
             </button>

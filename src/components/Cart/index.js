@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import Header from '../Header'
 import CartListView from '../CartListView'
 import Footer from '../Footer'
@@ -15,16 +16,18 @@ const Cart = () => {
         <div className="empty-cart-container">
           <img
             src="https://res.cloudinary.com/dlvb09jrk/image/upload/v1685252872/cooking_1_n9v3hj.png"
-            alt="empty-cart-view"
+            alt="empty cart"
             className="empty-cart-img"
           />
-          <h1 className="empty-cart-heading">No Orders Yet!</h1>
+          <h1 className="empty-cart-heading">No Order Yet!</h1>
           <p className="empty-cart-description">
             Your cart is empty. Add something from the menu.
           </p>
-          <button type="button" className="order-now-button">
-            Order Now
-          </button>
+          <Link to="/" className="link-element">
+            <button type="button" className="order-now-button">
+              Order Now
+            </button>
+          </Link>
         </div>
       ) : (
         <>
