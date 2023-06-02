@@ -52,7 +52,7 @@ class CartItem extends Component {
     const {quantity} = this.state
 
     return (
-      <li className="cart-item-container" testid="cartItem">
+      <li className="cart-item-container" test id="cartItem">
         <div className="cart-food-container">
           <img src={imageUrl} alt="cart-item" className="cart-food" />
           <h1 className="food-name"> {name} </h1>
