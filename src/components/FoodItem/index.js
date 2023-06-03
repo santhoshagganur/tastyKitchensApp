@@ -103,6 +103,7 @@ class FoodItem extends Component {
                 type="button"
                 className="add-sub-quantity"
                 onClick={this.decrementFoodQuantity}
+                testid="decrement-count"
               >
                 <HiOutlineMinusSm />
               </button>
@@ -111,6 +112,7 @@ class FoodItem extends Component {
                 type="button"
                 className="add-sub-quantity"
                 onClick={this.incrementFoodQuantity}
+                testid="increment-count"
               >
                 <BsPlus />
               </button>
