@@ -52,7 +52,7 @@ class CartItem extends Component {
     const {quantity} = this.state
 
     return (
-      <li className="cart-item-container">
+      <li className="cart-item-container" testid="cartItem">
         <div className="cart-food-container">
           <img src={imageUrl} alt="cart-item" className="cart-food" />
           <h1 className="food-name"> {name} </h1>
@@ -62,16 +62,18 @@ class CartItem extends Component {
             <BsDashSquare
               color="#52606D"
               size={12}
-              testid="minus"
+              testid="decrement-quantity"
               onClick={this.onDecrementQuantity}
             />
           </button>
-          <p className="cart-quantity">{quantity}</p>
+          <p className="cart-quantity" testid="item-quantity">
+            {quantity}
+          </p>
           <button type="button" className="quantity-controller-button">
             <BsPlusSquare
               color="#52606D"
               size={12}
-              testid="plus"
+              testid="increment-quantity"
               onClick={this.onIncrementQuantity}
             />
           </button>

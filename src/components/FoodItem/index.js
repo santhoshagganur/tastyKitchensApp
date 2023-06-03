@@ -80,7 +80,7 @@ class FoodItem extends Component {
     const {isClicked, quantity} = this.state
 
     return (
-      <li className="specific-restaurant-specific-food">
+      <li className="specific-restaurant-specific-food" testid="foodItem">
         <img
           src={imageUrl}
           className="specific-restaurant-food-img"

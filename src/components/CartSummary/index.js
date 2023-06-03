@@ -16,7 +16,7 @@ const CartSummary = () => {
     <div className="cart-bill-container">
       <h1 className="cart-bill-heading"> Order Total: </h1>
       <div>
-        <p className="cart-bill-amount">
+        <p className="cart-bill-amount" testid="total-price">
           <BiRupee /> {calculateTotalBill()}
         </p>
         <button type="button" className="place-order-btn">
