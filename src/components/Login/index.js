@@ -59,6 +59,7 @@ class Login extends Component {
             className="login-app-image"
             alt="website logo"
           />
+
           <h1 className="login-page-app-name"> Tasty Kitchens </h1>
           <h1 className="login-text"> Login </h1>
           <form className="form-control" onSubmit={this.loginToWebsite}>
@@ -92,7 +93,13 @@ class Login extends Component {
 
         <img
           src="https://res.cloudinary.com/dlvb09jrk/image/upload/v1683097799/Rectangle_1456_vk2qhf.png"
-          className="login-side-img"
+          className="login-side-img-large"
+          alt="website login"
+        />
+
+        <img
+          src="https://res.cloudinary.com/dlvb09jrk/image/upload/v1685716926/Rectangle_1457_1_ivzh7v.png"
+          className="login-side-img-small"
           alt="website login"
         />
       </div>
